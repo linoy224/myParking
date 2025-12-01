@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "823737682830",
+    "project_id": "mypark5618",
+    "storage_bucket": "mypark5618.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823737682830:android:277847e02fa2283530b2df",
+        "android_client_info": {
+          "package_name": "com.example.mypark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGGUU3Nav8eFMUxebn0sC7sgV8ZTv0v60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

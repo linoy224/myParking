@@ -12,18 +12,37 @@
     tools:context=".MainActivity">
 
     <!-- כותרת LOGIN -->
+
+
+    <!-- שדה שם משתמש -->
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/allan"
-        android:text="Login"
+        android:text="Sign up"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         android:textStyle="bold" />
 
-    <!-- שדה אימייל (היה Username) -->
+    <!-- שדה אימייל -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/roundedcorner"
+        android:elevation="4dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColorHint="#888888"
+        />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -32,8 +51,8 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/roundedcorner"
         android:elevation="4dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Username"
+        android:inputType="textPersonName"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColorHint="#888888" />
@@ -51,27 +70,42 @@
         android:inputType="textPassword"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:textColorHint="#888888" />
+        android:textColorHint="#888888"
+        />
+
+    <!-- שדה  ודוא סיסמה -->
+    <EditText
+        android:id="@+id/password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/roundedcorner"
+        android:elevation="4dp"
+        android:hint=" repeat Password"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColorHint="#888888"
+        />
+
 
     <!-- כפתור כניסה -->
+
     <Button
         android:id="@+id/signinBtn"
         android:layout_width="300dp"
         android:layout_height="55dp"
-        android:layout_marginTop="10dp"
         android:backgroundTint="#4A90E2"
-        android:text="Sign In"
+        android:text="Sign up"
         android:textColor="#FFFFFF"
+        android:textColorLink="#2196F3"
         android:textStyle="bold" />
 
-    <!-- מעבר ל-Sign Up -->
     <TextView
         android:id="@+id/btnsignupP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Don't have an account? Sign up"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:text="back to Sign in" />
 
 </LinearLayout>
