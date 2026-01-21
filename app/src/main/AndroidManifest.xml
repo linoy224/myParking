@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- הרשאה לחיבור אינטרנט -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <!-- הרשאה לאינטרנט -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,10 +16,9 @@
         android:theme="@style/Theme.MyPark"
         tools:targetApi="31">
 
-
         <!-- עמוד פתיחה -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +26,16 @@
             </intent-filter>
         </activity>
 
-        <!-- עמוד ההרשמה (SignUpActivity) -->
-        <activity android:name=".SignUpActivity" />
+        <!-- עמוד ההרשמה -->
+        <activity android:name=".ui.SignUpActivity" />
+
+        <!-- עמוד הבית -->
+        <activity android:name=".ui.HomePage" />
+<!--נוסף חדש לבדוק-->
+
+        <activity android:name=".ui.FindParkingActivity" />
+        <activity android:name=".ui.ShareParkingActivity" />
+
 
         <meta-data
             android:name="preloaded_fonts"

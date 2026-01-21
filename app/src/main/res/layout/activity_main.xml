@@ -9,7 +9,7 @@
     android:gravity="center"
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <!-- כותרת LOGIN -->
     <TextView
@@ -64,6 +64,8 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
+
+
     <!-- מעבר ל-Sign Up -->
     <TextView
         android:id="@+id/btnsignupP"
@@ -73,5 +75,8 @@
         android:text="Don't have an account? Sign up"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
+
+
+
 
 </LinearLayout>
