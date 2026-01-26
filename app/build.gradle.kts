@@ -46,6 +46,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.firestore)
 
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
     // ✅ ViewModel + LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.6")

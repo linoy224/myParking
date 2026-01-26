@@ -2,6 +2,7 @@ package com.example.mypark.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,13 +13,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mypark.R;
 import com.example.mypark.viewmodel.SignUpViewModel;
+import android.widget.ProgressBar;//להוסיף משתנה ProgressBar ב־MainActivity
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnLogin;
-    private TextView tvSignupLink, textView;
+    private TextView tvSignupLink;
     private SignUpViewModel viewModel;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,42 +32,35 @@ public class MainActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.signinBtn);
         tvSignupLink = findViewById(R.id.btnsignupP);
-        textView = findViewById(R.id.title);
+        progressBar = findViewById(R.id.progressBar);
 
         viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
-        // Greeting text
-        viewModel.getText().observe(this, textView::setText);
-        viewModel.setText("שלום! זה עובד 🎉");
-
-        // Login observers
         viewModel.getLoginError().observe(this, msg -> {
+            progressBar.setVisibility(View.GONE);//להסתיר Loader במקרה של שגיאה
             Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
             btnLogin.setEnabled(true);
         });
 
         viewModel.getLoginSuccess().observe(this, success -> {
-            if (success) goToHomePage();
+            if (success) {
+                progressBar.setVisibility(View.GONE);//להסתיר Loader במקרה של הצלחה
+                startActivity(new Intent(this, HomePage.class));
+                finish();
+            }
         });
 
-        // Signup link
+        btnLogin.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);//להציג Loader בלחיצה על Sign In
+            btnLogin.setEnabled(false);
+            viewModel.login(
+                    etEmail.getText().toString().trim(),
+                    etPassword.getText().toString().trim()
+            );
+        });
+
         tvSignupLink.setOnClickListener(v ->
                 startActivity(new Intent(this, SignUpActivity.class))
         );
-
-        // Login button
-        btnLogin.setOnClickListener(v -> {
-            btnLogin.setEnabled(false);
-            viewModel.login(safe(etEmail), safe(etPassword));
-        });
-    }
-
-    private void goToHomePage() {
-        startActivity(new Intent(this, HomePage.class));
-        finish();
-    }
-
-    private static String safe(EditText e) {
-        return e.getText() == null ? "" : e.getText().toString().trim();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.mypark.viewmodel;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 
 import androidx.lifecycle.LiveData;
@@ -15,18 +16,15 @@ public class SignUpViewModel extends ViewModel {
 
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    // Greeting TextView
-    private final MutableLiveData<String> text = new MutableLiveData<>();
-    public LiveData<String> getText() { return text; }
-    public void setText(String value) { text.setValue(value); }
-
     // Login
     private final MutableLiveData<String> loginError = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loginSuccess = new MutableLiveData<>();
+
     public LiveData<String> getLoginError() { return loginError; }
     public LiveData<Boolean> getLoginSuccess() { return loginSuccess; }
 
     public void login(String email, String password) {
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             loginError.setValue("נא להכניס אימייל תקין");
             return;
@@ -40,6 +38,7 @@ public class SignUpViewModel extends ViewModel {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        loginSuccess.setValue(false); // איפוס
                         loginSuccess.setValue(true);
                     } else {
                         loginError.setValue(
@@ -54,10 +53,12 @@ public class SignUpViewModel extends ViewModel {
     // SignUp
     private final MutableLiveData<String> signUpError = new MutableLiveData<>();
     private final MutableLiveData<Boolean> signUpSuccess = new MutableLiveData<>();
+
     public LiveData<String> getSignUpError() { return signUpError; }
     public LiveData<Boolean> getSignUpSuccess() { return signUpSuccess; }
 
     public void signUp(String email, String password, String confirm, String username) {
+        Log.d("SignupVM", "viewmodel signUp()");
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             signUpError.setValue("אימייל לא תקין");
@@ -82,26 +83,30 @@ public class SignUpViewModel extends ViewModel {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
-                        signUpError.setValue(task.getException() != null
-                                ? task.getException().getMessage()
-                                : "שגיאה בהרשמה");
+                        signUpError.setValue(
+                                task.getException() != null
+                                        ? task.getException().getMessage()
+                                        : "שגיאה בהרשמה"
+                        );
                         return;
                     }
 
-                    if (auth.getCurrentUser() != null) {
-                        UserProfileChangeRequest req = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(username)
-                                .build();
+                    FirebaseUser user = auth.getCurrentUser();
+                    if (user != null) {
+                        UserProfileChangeRequest req =
+                                new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(username)
+                                        .build();
 
-                        auth.getCurrentUser().updateProfile(req)
-                                .addOnCompleteListener(upt -> signUpSuccess.setValue(true));
+                        user.updateProfile(req).addOnCompleteListener(upt -> {
+                            signUpSuccess.setValue(false); // איפוס
+                            signUpSuccess.setValue(true);
+                        });
                     }
                 });
     }
 
-    // ✅ בדיקה אם המשתמש כבר מחובר
     public boolean isUserLoggedIn() {
-        FirebaseUser currentUser = auth.getCurrentUser();
-        return currentUser != null;
+        return auth.getCurrentUser() != null;
     }
 }
