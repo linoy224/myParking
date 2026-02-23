@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getLoginSuccess().observe(this, success -> {
             if (success) {
                 progressBar.setVisibility(View.GONE);//להסתיר Loader במקרה של הצלחה
-                startActivity(new Intent(this, HomePage.class));
+                startActivity(new Intent(this, ParkingActivity.class));
                 finish();
             }
         });
