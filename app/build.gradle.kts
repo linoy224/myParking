@@ -52,6 +52,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.6")
 
+        // הוספה למפה
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
     // בדיקות
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
