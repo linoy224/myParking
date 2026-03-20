@@ -9,7 +9,7 @@
     android:gravity="center"
     android:paddingHorizontal="20dp"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.SignInActivity">
 
     <!-- כותרת LOGIN -->
 

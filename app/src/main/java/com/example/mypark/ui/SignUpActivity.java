@@ -52,8 +52,20 @@ public class SignUpActivity extends AppCompatActivity {
 
         viewModel.getSignUpSuccess().observe(this, success -> {
             if (success) {
-                progressBar.setVisibility(View.GONE);//להסתיר Loader במקרה של הצלחה
-                startActivity(new Intent(this, MainActivity.class));
+                // הסתרת סרגל הטעינה כי סיימנו
+                progressBar.setVisibility(View.GONE);
+
+                Toast.makeText(this, "נרשמת בהצלחה! ברוך הבא", Toast.LENGTH_SHORT).show();
+
+                // יצירת כוונה (Intent) לעבור ישירות למסך המפה (MainActivity)
+                Intent intent = new Intent(this, MainActivity.class);
+
+                // Flag שמנקה את היסטוריית הדפים - כך שאם המשתמש ילחץ "חזור", הוא לא יחזור לדף ההרשמה
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(intent);
+
+                // סגירת דף ההרשמה הנוכחי
                 finish();
             }
         });
@@ -72,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         btnBackToSignIn.setOnClickListener(v ->
-                startActivity(new Intent(this, MainActivity.class))
+                startActivity(new Intent(this, SignInActivity.class))
         );
     }
 }

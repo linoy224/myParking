@@ -38,14 +38,20 @@ public class SignUpViewModel extends ViewModel {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        loginSuccess.setValue(false); // איפוס
+                        // 1. תשלחי רק true. ה-Activity יטפל במעבר.
                         loginSuccess.setValue(true);
+
+                        // 2. לוג לבדיקה - תראי ב-Logcat אם זה מודפס
+                        Log.d("VM_DEBUG", "Login successful for: " + email);
                     } else {
+                        // שליחת הודעת השגיאה למשתמש
                         loginError.setValue(
                                 task.getException() != null
                                         ? task.getException().getMessage()
                                         : "שגיאה בהתחברות"
                         );
+                        // ודאי שההצלחה היא false כדי שהטעינה תיפסק
+                        loginSuccess.setValue(false);
                     }
                 });
     }

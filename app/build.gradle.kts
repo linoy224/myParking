@@ -45,15 +45,17 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.firestore)
+    //הוספת  ספריית Realtime Database
+    implementation("com.google.firebase:firebase-database")
 
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     // ✅ ViewModel + LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
     implementation("androidx.lifecycle:lifecycle-livedata:2.8.6")
 
         // הוספה למפה
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-maps:20.0.0")
     // בדיקות
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

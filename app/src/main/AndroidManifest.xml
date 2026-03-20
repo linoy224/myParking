@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- הרשאה לאינטרנט -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--כדי ש-Firebase יוכל "להתעורר"-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <meta-data
-        android:name="com.google.android.myPark.API_KEY"
-        android:value="AIzaSyCbaiSATilcpJ2T5rHCNq0T2_M3PA1MA0o"/>
+
 
     <application
 
@@ -22,19 +21,24 @@
         android:theme="@style/Theme.MyPark"
         tools:targetApi="31"
         >
-        <activity
-            android:name=".ui.ParkingActivity"
-            android:exported="false" />
-        <!-- עמוד פתיחה -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB1d24ZboFKG2HMswz98l3BnyecC2jk6mM"/>
+
         <activity
             android:name=".ui.MainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.SignInActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- עמוד ההרשמה -->
+        </activity>
+        <!-- עמוד ההרשמה -->
         <activity android:name=".ui.SignUpActivity" /> <!-- עמוד הבית -->
         <activity android:name=".ui.HomePage" /> <!-- נוסף חדש לבדוק -->
         <activity android:name=".ui.FindParkingActivity" />
@@ -43,9 +47,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data
+        <!-- <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE" />
+            android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE" />-->
     </application>
 
 </manifest>
