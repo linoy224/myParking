@@ -29,6 +29,16 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
+
+        // If already logged in, go straight to main
+        if (viewModel.isUserLoggedIn()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_signup);
 
         etEmail = findViewById(R.id.email);
@@ -39,10 +49,6 @@ public class SignUpActivity extends AppCompatActivity {
         btnBackToSignIn = findViewById(R.id.btnsignupP);
 
         progressBar = findViewById(R.id.progressBar);
-
-
-
-        viewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
 
         viewModel.getSignUpError().observe(this, msg -> {
             progressBar.setVisibility(View.GONE);//להסתיר Loader במקרה של שגיאה

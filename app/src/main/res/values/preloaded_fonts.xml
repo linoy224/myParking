@@ -3,5 +3,6 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/allan</item>
         <item>@font/bad_script</item>
+        <item>@font/baloo2</item>
     </array>
 </resources>

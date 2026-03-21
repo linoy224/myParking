@@ -1,90 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DE91B9C8"
-    android:gravity="center"
-    android:paddingHorizontal="20dp"
-    android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
+    android:fillViewport="true"
     tools:context=".ui.SignInActivity">
 
-    <!-- כותרת LOGIN -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:fontFamily="@font/allan"
-        android:text="Login"
-        android:textColor="#FFFFFF"
-        android:textSize="50sp"
-        android:textStyle="bold" />
-
-    <!-- שדה אימייל (היה Username) -->
-    <EditText
-        android:id="@+id/username"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="15dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/roundedcorner"
-        android:elevation="4dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColorHint="#888888" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="48dp">
 
-    <!-- שדה סיסמה -->
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="15dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/roundedcorner"
-        android:elevation="4dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColorHint="#888888" />
+        <!-- App icon -->
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/circle_blue"
+            android:gravity="center"
+            android:text="P"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
 
-    <!-- כפתור כניסה -->
-    <Button
-        android:id="@+id/signinBtn"
-        android:layout_width="300dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#4A90E2"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/allan"
+            android:text="Welcome Back"
+            android:textColor="#FFFFFF"
+            android:textSize="38sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Sign in to find your perfect spot"
+            android:textColor="@color/text_light"
+            android:textSize="15sp" />
 
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/input_field_bg"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
 
-    <!-- מעבר ל-Sign Up -->
-    <TextView
-        android:id="@+id/btnsignupP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Don't have an account? Sign up"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/input_field_bg"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="#999999"
+            android:textSize="15sp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        <Button
+            android:id="@+id/signinBtn"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/btn_primary"
+            android:text="Sign In"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:stateListAnimator="@null" />
 
+        <TextView
+            android:id="@+id/btnsignupP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Don't have an account? Sign up"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
 
-
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -50,8 +50,7 @@ public class SignUpViewModel extends ViewModel {
                                         ? task.getException().getMessage()
                                         : "שגיאה בהתחברות"
                         );
-                        // ודאי שההצלחה היא false כדי שהטעינה תיפסק
-                        loginSuccess.setValue(false);
+                        // Don't set loginSuccess here — the error observer handles the UI
                     }
                 });
     }
@@ -105,8 +104,13 @@ public class SignUpViewModel extends ViewModel {
                                         .build();
 
                         user.updateProfile(req).addOnCompleteListener(upt -> {
-                            signUpSuccess.setValue(false); // איפוס
-                            signUpSuccess.setValue(true);
+                            if (upt.isSuccessful()) {
+                                signUpSuccess.setValue(true);
+                            } else {
+                                // Profile update failed, but user was created — still let them in
+                                Log.d("SignupVM", "Profile update failed, proceeding anyway");
+                                signUpSuccess.setValue(true);
+                            }
                         });
                     }
                 });
