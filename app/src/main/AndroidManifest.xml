@@ -39,10 +39,8 @@
             </intent-filter>
         </activity>
         <!-- עמוד ההרשמה -->
-        <activity android:name=".ui.SignUpActivity" /> <!-- עמוד הבית -->
-        <activity android:name=".ui.HomePage" /> <!-- נוסף חדש לבדוק -->
-        <activity android:name=".ui.FindParkingActivity" />
-        <activity android:name=".ui.ShareParkingActivity" />
+        <activity android:name=".ui.SignUpActivity" />
+
 
         <meta-data
             android:name="preloaded_fonts"
